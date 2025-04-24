@@ -1,20 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Home from "./pages/Home";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Navbar from './components/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
+    <Router>
+      <Navbar />
       <div>
-        <h1>Spotify API</h1>
-        </div>
-        <p>Retrieve metadata about artists, tracks, and playlists, create and manage playlists, control playback, and even analyze user listening data</p>
-    </>
-  
-  )
+        <h1>Recipes API</h1>
+        <p>Retrieve recipes</p>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
