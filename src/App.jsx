@@ -1,34 +1,47 @@
-import { useState } from 'react';
-import './App.css';
-import Home from "./pages/Home";
+// src/App.jsx
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import React from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import About from "./pages/about";
+import Try from "./pages/try";
+import Header from "./component/header.jsx";
 
-import Home from './pages/Home';
-import About from './pages/About';
-import Navbar from './components/Navbar'
+const Button = () => {
+  const navigate = useNavigate();
 
-function App() {
-  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    navigate("/");
+  };
 
   return (
-    <Router>
-      <Navbar />
-      <div>
-        <h1>Recipes API</h1>
-        <p>Retrieve recipes</p>
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
-    </Router>
+    <button
+      onClick={handleClick}
+      style={{
+        padding: "10px 20px",
+        fontSize: "16px",
+        cursor: "pointer",
+        outline: "none",
+        border: "2px solid green",
+        borderRadius: "4px",
+        marginTop: "16px",
+        marginBottom: "16px",
+      }}
+    >
+      Go to Home
+    </button>
   );
-}
+};
+
+const App = () => (
+  <div style={{ textAlign: "center" }}>
+    <Header />
+    <Button />
+    <Routes>
+      <Route path="/" element={<div>Welcome to the Home page</div>} />
+      <Route path="/about" element={<About />} />
+      <Route path="/try" element={<Try />} />
+    </Routes>
+  </div>
+);
 
 export default App;
