@@ -1,12 +1,23 @@
 // src/App.jsx
 
 import React from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import About from "./pages/about";
 import Try from "./pages/try";
 import Header from "./component/header.jsx";
 
-const Button = () => {
+
+//links to differenct pages
+const Navbar = () => (
+  <nav style={{ margin: "20px", textAlign: "center" }}>
+    <Link to="/" style={{ margin: "10px", color: "SaddleBrown" }}>Home</Link>
+    <Link to="/about" style={{ margin: "10px", color: "SaddleBrown" }}>About</Link>
+    <Link to="/try" style={{ margin: "10px" , color: "SaddleBrown" }}>Try</Link>
+  </nav>
+);
+
+
+const Home = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -14,30 +25,20 @@ const Button = () => {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      style={{
-        padding: "10px 20px",
-        fontSize: "16px",
-        cursor: "pointer",
-        outline: "none",
-        border: "2px solid green",
-        borderRadius: "4px",
-        marginTop: "16px",
-        marginBottom: "16px",
-      }}
-    >
-      Go to Home
-    </button>
+    <div style={{ textAlign: "center" }}>
+      <Header />
+
+    
+      <div>Welcome to the Home page</div>
+    </div>
   );
 };
 
 const App = () => (
   <div style={{ textAlign: "center" }}>
-    <Header />
-    <Button />
+    <Navbar /> 
     <Routes>
-      <Route path="/" element={<div>Welcome to the Home page</div>} />
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/try" element={<Try />} />
     </Routes>
